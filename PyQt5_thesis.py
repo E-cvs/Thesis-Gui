@@ -34,6 +34,17 @@ Style = """
         background-color:rgba(100,200,255,255);
 
     }
+    QProgressBar{
+        border: 2px solid grey;
+        color: black ;
+        border-radius: 5px;
+        text-align: center;
+}
+    QProgressBar::chunk {
+        background-color: rgb(100, 200, 255);
+        width: 10px;
+        margin: 0.5px;
+}
 """
 #giriş penceresi
 class Kullanici_girisi(QtWidgets.QWidget):
