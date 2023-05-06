@@ -345,14 +345,17 @@ class Results(QtWidgets.QWidget):
         self.m1 = QtWidgets.QLabel("M1 motoru:")
         self.m2 = QtWidgets.QLabel("M2 motoru:")
 
-        #progress bars
+        #progress bars,max value tanklarda bulunan sıvı seviyesine göre ayarlandı 600mm
         self.L1_tank = QtWidgets.QProgressBar()
+        self.L1_tank.setMaximum(600)
         self.L1_tank.setOrientation(QtCore.Qt.Vertical)
         self.L1_tank.setMinimumWidth(40)
         self.L2_tank = QtWidgets.QProgressBar()
+        self.L2_tank.setMaximum(600)
         self.L2_tank.setOrientation(QtCore.Qt.Vertical)
         self.L2_tank.setMinimumWidth(40)
         self.L3_tank = QtWidgets.QProgressBar()
+        self.L3_tank.setMaximum(600)
         self.L3_tank.setOrientation(QtCore.Qt.Vertical)
         self.L3_tank.setMinimumWidth(40)
         
@@ -432,7 +435,13 @@ class Results(QtWidgets.QWidget):
                     pwm_m1.ChangeDutyCycle(0)
                     pwm_m2.ChangeDutyCycle(0)
                     raise KeyboardInterrupt("Bir problem oluştu")
-                
+                    
+                #Tank değerlerinin gösterilmesi
+                self.L1_tank.setValue(L1_water_Level)
+                self.L3_tank.setValue(L3_water_level)
+                self.m1_bar.setValue(output_L1)
+               #self.m2_bar.setvalue(output_L3) daha sonradan eklenecektir.
+               
                 print("Motora uygulanan güç yüzde: ", output_L1)
                 pwm_m1.ChangeDutyCycle(output_L1)
                 print ("\33[9A")
